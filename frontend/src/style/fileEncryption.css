@@ -1,41 +1,66 @@
-/* Main container styling */
-.file-encryption-container {
+/* Modern responsive CSS for file encryption interface */
+
+/* CSS Variables for consistency with header and footer */
+:root {
+    --primary-bg: #1e293b;
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    --accent: #3b82f6;
+    --accent-light: #60a5fa;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --transition: 0.3s ease;
+    --container-width: 1280px;
+    --border-radius: 8px;
+    --background-light: #ffffff;
+    --input-bg: #f9fafb;
+    --border-light: #e2e8f0;
+  }
+  
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Main container styling */
+  .file-encryption-container {
     max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin: clamp(1rem, 2vw, 1.5rem) auto;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 16px var(--shadow);
+    backdrop-filter: blur(8px);
+    font-family: 'Inter', sans-serif;
   }
   
   /* Tab styling */
   .tabs {
     display: flex;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
   }
   
   .tabs button {
-    padding: 0.75rem 1.5rem;
+    padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
     border: none;
     background: none;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.2vw, 0.95rem);
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #666;
+    color: var(--text-secondary);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: color var(--transition), transform var(--transition);
     position: relative;
   }
   
   .tabs button:hover {
-    color: #3b82f6;
+    color: var(--accent);
+    transform: translateY(-2px);
   }
   
   .tabs button.active {
-    color: #3b82f6;
+    color: var(--accent);
   }
   
   .tabs button.active::after {
@@ -45,7 +70,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: #3b82f6;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
     border-radius: 3px 3px 0 0;
   }
   
@@ -53,9 +78,10 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: clamp(1rem, 1.5vw, 1.25rem);
   }
   
+  /* Input group styling */
   .input-group {
     display: flex;
     flex-direction: column;
@@ -65,7 +91,7 @@
   .input-group label {
     font-weight: 600;
     color: #333;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
   }
   
   /* File input styling */
@@ -73,16 +99,17 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem;
-    border: 2px dashed #ccc;
-    border-radius: 6px;
-    background-color: #f9fafb;
+    padding: clamp(0.5rem, 1vw, 0.75rem);
+    border: 2px dashed var(--border-light);
+    border-radius: var(--border-radius);
+    background-color: var(--input-bg);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: border-color var(--transition), transform var(--transition);
   }
   
   .file-input:hover {
-    border-color: #3b82f6;
+    border-color: var(--accent);
+    transform: scale(1.01);
   }
   
   .file-input input[type="file"] {
@@ -93,8 +120,8 @@
   }
   
   .file-name {
-    font-size: 0.9rem;
-    color: #3b82f6;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
+    color: var(--accent);
     font-weight: 500;
   }
   
@@ -103,23 +130,23 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    background-color: #f9fafb;
-    transition: all 0.2s ease;
+    padding: clamp(0.5rem, 1vw, 0.75rem);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius);
+    background-color: var(--input-bg);
+    transition: border-color var(--transition), box-shadow var(--transition);
   }
   
   .password-input:focus-within {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
   }
   
   .password-input input {
     border: none;
     background: none;
     width: 100%;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.2vw, 0.95rem);
     outline: none;
   }
   
@@ -127,25 +154,25 @@
   .key-textarea {
     display: flex;
     gap: 0.75rem;
-    padding: 0.75rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    background-color: #f9fafb;
-    transition: all 0.2s ease;
+    padding: clamp(0.5rem, 1vw, 0.75rem);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius);
+    background-color: var(--input-bg);
+    transition: border-color var(--transition), box-shadow var(--transition);
   }
   
   .key-textarea:focus-within {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
   }
   
   .key-textarea textarea {
     border: none;
     background: none;
     width: 100%;
-    height: 100px;
-    font-size: 0.9rem;
-    font-family: monospace;
+    height: 80px;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
+    font-family: 'Fira Code', monospace;
     resize: vertical;
     outline: none;
   }
@@ -153,7 +180,7 @@
   /* Radio button styling */
   .radio-group {
     display: flex;
-    gap: 1.5rem;
+    gap: clamp(1rem, 1.5vw, 1.25rem);
     margin-top: 0.25rem;
   }
   
@@ -162,11 +189,12 @@
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    font-weight: normal;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
+    color: #333;
   }
   
-  .radio-label input[type="radio"] {
-    accent-color: #3b82f6;
+  .radio-label input[type="file"] {
+    accent-color: var(--accent);
     transform: scale(1.2);
   }
   
@@ -176,30 +204,33 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #3b82f6;
-    color: white;
+    padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    color: var(--text-primary);
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+    border-radius: var(--border-radius);
+    font-size: clamp(0.9rem, 1.2vw, 0.95rem);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    margin-top: 1rem;
+    transition: transform var(--transition), box-shadow var(--transition);
+    margin-top: 0.75rem;
   }
   
   .submit-button:hover {
-    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
   
   .submit-button:disabled {
-    background-color: #93c5fd;
+    background: #93c5fd;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
   }
   
   /* Spinning animation for loader */
   .spinning {
-    animation: spin 1.5s linear infinite;
+    animation: spin 1.2s linear infinite;
   }
   
   @keyframes spin {
@@ -210,33 +241,34 @@
   
   /* Result box styling */
   .result-box {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-radius: 6px;
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
   }
   
   .result-box.success {
-    background-color: #ecfdf5;
+    background-color: rgba(167, 243, 208, 0.2);
     border: 1px solid #10b981;
   }
   
   .result-box.error {
-    background-color: #fef2f2;
+    background-color: rgba(254, 242, 242, 0.2);
     border: 1px solid #ef4444;
   }
   
   .result-box h3 {
     margin: 0;
     color: #333;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
   }
   
   .result-box p {
     margin: 0;
-    color: #666;
+    color: #555;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
   }
   
   /* Download button styling */
@@ -244,44 +276,45 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: #3b82f6;
-    color: white;
-    border-radius: 4px;
+    padding: clamp(0.4rem, 0.8vw, 0.5rem) clamp(0.75rem, 1.5vw, 1rem);
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    color: var(--text-primary);
+    border-radius: var(--border-radius);
     text-decoration: none;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
     font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    align-self: flex-start;
+    transition: transform var(--transition), box-shadow var(--transition);
   }
   
   .download-button:hover {
-    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   }
   
   /* Info box styling */
   .info-box {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    background: rgba(248, 250, 252, 0.95);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(8px);
   }
   
   .info-box h4 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.5rem;
     color: #333;
+    font-size: clamp(0.95rem, 1.2vw, 1rem);
   }
   
   .info-box ul {
-    margin: 0;
-    padding-left: 1.25rem;
+    padding-left: 1rem;
   }
   
   .info-box li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     color: #555;
+    font-size: clamp(0.85rem, 1vw, 0.9rem);
   }
   
   .info-box li:last-child {
@@ -291,17 +324,96 @@
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .file-encryption-container {
-      padding: 1.5rem;
-      margin: 1rem;
+      padding: clamp(0.75rem, 1.5vw, 1rem);
+      margin: clamp(0.5rem, 1vw, 0.75rem);
     }
-    
+  
     .tabs button {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
+      padding: clamp(0.4rem, 0.8vw, 0.5rem) clamp(0.75rem, 1.5vw, 1rem);
+      font-size: clamp(0.85rem, 1vw, 0.9rem);
     }
-    
+  
     .radio-group {
       flex-direction: column;
       gap: 0.75rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .file-encryption-container {
+      border-radius: 6px;
+    }
+  
+    .tabs {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+  
+  /* Accessibility: Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .tabs button,
+    .file-input,
+    .password-input,
+    .key-textarea,
+    .submit-button,
+    .download-button,
+    .tabs button::after,
+    .file-input:hover,
+    .password-input:focus-within,
+    .key-textarea:focus-within,
+    .submit-button:hover,
+    .download-button:hover {
+      transition: none;
+    }
+  
+    .spinning {
+      animation: none;
+    }
+  }
+  
+  /* Accessibility: High contrast */
+  @media (prefers-contrast: high) {
+    .file-encryption-container {
+      background: #fff;
+      border: 1px solid #000;
+    }
+  
+    .tabs button,
+    .input-group label,
+    .result-box h3,
+    .result-box p,
+    .info-box h4,
+    .info-box li {
+      color: #000;
+    }
+  
+    .tabs button.active::after,
+    .file-input:hover,
+    .password-input:focus-within,
+    .key-textarea:focus-within {
+      border-color: #000;
+      background: #000;
+    }
+  
+    .submit-button,
+    .download-button {
+      background: #000;
+      color: #fff;
+    }
+  
+    .submit-button:hover,
+    .download-button:hover {
+      background: #333;
+    }
+  
+    .result-box.success {
+      border-color: #000;
+      background: #fff;
+    }
+  
+    .result-box.error {
+      border-color: #000;
+      background: #fff;
     }
   }
