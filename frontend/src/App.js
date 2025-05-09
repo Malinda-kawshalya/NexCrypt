@@ -15,12 +15,6 @@ function App() {
           <Route path="/" element={<FileEncryption />} />
           <Route path="/file-encryption" element={<FileEncryption />} />
           <Route path="/digital-signature" element={<DigitalSignature />} />
-          {/* 
-          <Route path="/digital-signature" element={<DigitalSignature />} />
-          <Route path="/secure-notes" element={<SecureNotes />} />
-          <Route path="/integrity-checker" element={<IntegrityChecker />} />
-          <Route path="/encrypted-messaging" element={<EncryptedMessaging />} />
-          */}
         </Routes>
         <Footer />
       </div>
