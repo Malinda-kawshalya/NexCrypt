@@ -4,7 +4,7 @@ import './App.css';
 import FileEncryption from './pages/fileEncryption';
 import Header from './components/header';
 import Footer from './components/footer';
-
+import DigitalSignature from './pages/DigitalSignature';
 function App() {
   return (
     <Router>
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<FileEncryption />} />
           <Route path="/file-encryption" element={<FileEncryption />} />
-          {/* Add other routes as you develop them */}
+          <Route path="/digital-signature" element={<DigitalSignature />} />
           {/* 
           <Route path="/digital-signature" element={<DigitalSignature />} />
           <Route path="/secure-notes" element={<SecureNotes />} />
