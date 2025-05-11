@@ -63,10 +63,10 @@ const Header = () => {
           <ul className="nav-list">
             {[
               { to: '/', label: 'Home' },
-              { to: '/dashboard', label: 'Dashboard' },
-              { to: '/encrypt', label: 'Encrypt' },
-              { to: '/decrypt', label: 'Decrypt' },
-              { to: '/about', label: 'About' },
+              { to: '/file-encryption', label: 'File Encryption' },
+              { to: '/digital-signature', label: 'Digital Signature' },
+              { to: '/document-checker', label: 'Document Checker' },
+              { to: '/message-interface', label: 'Message interface' },
             ].map((item) => (
               <li className="nav-item" key={item.to}>
                 <NavLink

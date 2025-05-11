@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/documentIntegrity.css';
+import '../style/documentIntegrity.css';
 
 const DocumentChecker = () => {
   const [files, setFiles] = useState([]);
