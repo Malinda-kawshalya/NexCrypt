@@ -33,7 +33,7 @@ html, body {
 .file-encryption-container {
   min-height: 100vh;
   width: 100vw;
-  padding: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
   background: var(--primary-bg);
   background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 10px 10px;
@@ -41,7 +41,7 @@ html, body {
   font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
   overflow-y: auto;
   box-sizing: border-box;
 }
@@ -50,22 +50,22 @@ html, body {
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  margin-bottom: clamp(1rem, 2vw, 1.25rem);
   width: 100%;
 }
 
 .tabs button {
   flex: 1;
-  min-width: 100px;
-  padding: clamp(0.5rem, 1.2vw, 0.75rem);
+  min-width: 120px;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
   background: var(--primary-bg);
   background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 10px 10px;
   border: none;
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
   font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
@@ -95,15 +95,17 @@ html, body {
 form {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.75rem, 1.5vw, 1rem);
+  gap: clamp(1rem, 2vw, 1.25rem);
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Input group styling */
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.5rem, 1vw, 0.75rem);
+  gap: clamp(0.75rem, 1.5vw, 1rem);
   width: 100%;
 }
 
@@ -111,29 +113,39 @@ form {
   font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   color: var(--text-primary);
-  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
   text-shadow: var(--glow);
 }
 
-/* File input styling */
+/* File input styling (styled as a button) */
 .file-input {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: clamp(0.5rem, 1vw, 0.75rem);
-  padding: clamp(0.5rem, 1vw, 0.75rem);
-  border: 2px dashed rgba(255, 255, 255, 0.2);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  border: none;
   border-radius: var(--border-radius);
-  background: var(--primary-bg);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 10px 10px;
   cursor: pointer;
-  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  animation: pulse 2s infinite ease-in-out;
 }
 
 .file-input:hover {
-  border-color: var(--accent);
-  transform: scale(1.01);
+  transform: translateY(-3px);
   box-shadow: var(--glow);
+}
+
+.file-input:focus-within {
+  box-shadow: var(--glow);
+  outline: 2px solid var(--accent);
 }
 
 .file-input input[type="file"] {
@@ -145,11 +157,18 @@ form {
 
 .file-name {
   font-size: clamp(0.8rem, 1.1vw, 0.85rem);
-  color: var(--accent);
+  color: var(--text-primary);
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 100%;
+}
+
+.file-name:empty::before {
+  content: 'Select File';
+  color: var(--text-primary);
+  opacity: 0.8;
 }
 
 /* Password input styling */
@@ -157,7 +176,7 @@ form {
   display: flex;
   align-items: center;
   gap: clamp(0.5rem, 1vw, 0.75rem);
-  padding: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius);
   background: var(--primary-bg);
@@ -175,7 +194,7 @@ form {
   border: none;
   background: transparent;
   width: 100%;
-  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
   outline: none;
   color: var(--text-primary);
 }
@@ -184,7 +203,7 @@ form {
 .key-textarea {
   display: flex;
   gap: clamp(0.5rem, 1vw, 0.75rem);
-  padding: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius);
   background: var(--primary-bg);
@@ -202,8 +221,8 @@ form {
   border: none;
   background: transparent;
   width: 100%;
-  height: clamp(60px, 10vh, 80px);
-  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  height: clamp(80px, 12vh, 100px);
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
   font-family: monospace;
   resize: vertical;
   outline: none;
@@ -213,8 +232,8 @@ form {
 /* Radio button styling */
 .radio-group {
   display: flex;
-  gap: clamp(0.75rem, 1.5vw, 1rem);
-  margin-top: clamp(0.25rem, 0.5vw, 0.5rem);
+  gap: clamp(1rem, 2vw, 1.25rem);
+  margin-top: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .radio-label {
@@ -222,13 +241,13 @@ form {
   align-items: center;
   gap: clamp(0.5rem, 1vw, 0.75rem);
   cursor: pointer;
-  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
   color: var(--text-primary);
 }
 
 .radio-label input[type="radio"] {
   accent-color: var(--accent);
-  transform: scale(1.2);
+  transform: scale(1.3);
 }
 
 /* Submit button styling */
@@ -237,19 +256,19 @@ form {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: clamp(0.5rem, 1.2vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
   background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
   color: var(--text-primary);
   border: none;
   border-radius: var(--border-radius);
   font-family: 'Inter', sans-serif;
-  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
   font-weight: 600;
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition);
-  margin-top: clamp(0.5rem, 1vw, 0.75rem);
+  margin-top: clamp(0.75rem, 1.5vw, 1rem);
   width: 100%;
-  max-width: 250px;
+  max-width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -279,12 +298,12 @@ form {
 
 /* Result box styling */
 .result-box {
-  margin-top: clamp(0.75rem, 1.5vw, 1rem);
-  padding: clamp(0.75rem, 1.5vw, 1rem);
+  margin-top: clamp(1rem, 2vw, 1.25rem);
+  padding: clamp(1rem, 2vw, 1.25rem);
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
-  gap: clamp(0.5rem, 1vw, 0.75rem);
+  gap: clamp(0.75rem, 1.5vw, 1rem);
   background: var(--primary-bg);
   background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 10px 10px;
@@ -292,6 +311,293 @@ form {
   box-shadow: 0 4px 20px var(--shadow);
   backdrop-filter: blur(10px);
   width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.file-encryption-container {
+  min-height: 100vh;
+  width: 100vw;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Tab styling */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: clamp(1rem, 2vw, 1.25rem);
+  width: 100%;
+}
+
+.tabs button {
+  flex: 1;
+  min-width: 120px;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  background: var(--primary-bg);
+  background-size: 10px 10px;
+  border: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition), transform var(--transition), text-shadow var(--transition);
+}
+
+.tabs button:hover,
+.tabs button.active {
+  color: var(--accent);
+  transform: translateY(-2px);
+  text-shadow: var(--glow);
+}
+
+.tabs button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  box-shadow: var(--glow);
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.25rem);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Input group styling */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  width: 100%;
+}
+
+.input-group label {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
+  text-shadow: var(--glow);
+}
+
+/* File input styling (styled as a button) */
+.file-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.file-input:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
+}
+
+.file-input:focus-within {
+  box-shadow: var(--glow);
+  outline: 2px solid var(--accent);
+}
+
+.file-input input[type="file"] {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.file-name {
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  color: var(--text-primary);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.file-name:empty::before {
+  content: 'Select File';
+  color: var(--text-primary);
+  opacity: 0.8;
+}
+
+/* Password input styling */
+.password-input {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.password-input:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.password-input input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
+  outline: none;
+  color: var(--text-primary);
+}
+
+/* Key textarea styling */
+.key-textarea {
+  display: flex;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.key-textarea:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.key-textarea textarea {
+  border: none;
+  background: transparent;
+  width: 100%;
+  height: clamp(80px, 12vh, 100px);
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-family: monospace;
+  resize: vertical;
+  outline: none;
+  color: var(--text-primary);
+}
+
+/* Radio button styling */
+.radio-group {
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.25rem);
+  margin-top: clamp(0.5rem, 1vw, 0.75rem);
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  cursor: pointer;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  color: var(--text-primary);
+}
+
+.radio-label input[type="radio"] {
+  accent-color: var(--accent);
+  transform: scale(1.3);
+}
+
+/* Submit button styling */
+.submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  margin-top: clamp(0.75rem, 1.5vw, 1rem);
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
+}
+
+.submit-button:disabled {
+  background: rgba(15, 23, 42, 0.5);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Spinning animation for loader */
+.spinning {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Result box styling */
+.result-box {
+  margin-top: clamp(1rem, 2vw, 1.25rem);
+  padding: clamp(1rem, 2vw, 1.25rem);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px var(--shadow);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .result-box.success {
@@ -311,7 +617,7 @@ form {
 .result-box h3 {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(0.95rem, 1.4vw, 1rem);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   color: var(--text-primary);
   text-shadow: var(--glow);
   animation: pulse 2s infinite ease-in-out;
@@ -326,7 +632,7 @@ form {
 .result-box p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
 }
 
 /* Download button styling */
@@ -334,17 +640,18 @@ form {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
   background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
   color: var(--text-primary);
   border: none;
   border-radius: var(--border-radius);
   text-decoration: none;
   font-family: 'Inter', sans-serif;
-  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
-  font-weight: 500;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-weight: 600;
   transition: transform var(--transition), box-shadow var(--transition);
-  max-width: 200px;
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 .download-button:hover {
@@ -354,8 +661,8 @@ form {
 
 /* Info box styling */
 .info-box {
-  margin-top: clamp(0.75rem, 1.5vw, 1rem);
-  padding: clamp(0.75rem, 1.5vw, 1rem);
+  margin-top: clamp(1rem, 2vw, 1.25rem);
+  padding: clamp(1rem, 2vw, 1.25rem);
   background: var(--primary-bg);
   background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 10px 10px;
@@ -364,24 +671,27 @@ form {
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px var(--shadow);
   width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .info-box h4 {
-  margin: 0 0 clamp(0.5rem, 1vw, 0.75rem);
+  margin: 0 0 clamp(0.75rem, 1.5vw, 1rem);
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   color: var(--text-primary);
   text-shadow: var(--glow);
 }
 
 .info-box ul {
-  padding-left: clamp(1rem, 2vw, 1.25rem);
+  padding-left: clamp(1.25rem, 2.5vw, 1.5rem);
 }
 
 .info-box li {
-  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
   color: var(--text-secondary);
-  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
 }
 
 .info-box li:last-child {
@@ -391,7 +701,7 @@ form {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .file-encryption-container {
-    padding: clamp(0.5rem, 1.5vw, 0.75rem);
+    padding: clamp(0.75rem, 1.5vw, 1rem);
   }
 
   .tabs {
@@ -402,12 +712,12 @@ form {
   .tabs button {
     min-width: unset;
     padding: clamp(0.5rem, 1vw, 0.75rem);
-    font-size: clamp(0.75rem, 1vw, 0.8rem);
+    font-size: clamp(0.8rem, 1.1vw, 0.85rem);
   }
 
   .radio-group {
     flex-direction: column;
-    gap: clamp(0.5rem, 1vw, 0.75rem);
+    gap: clamp(0.75rem, 1.5vw, 1rem);
   }
 
   .file-input,
@@ -418,12 +728,17 @@ form {
   }
 
   .file-name {
-    margin-left: 0;
-    margin-top: clamp(0.25rem, 0.5vw, 0.5rem);
+    margin-top: clamp(0.5rem, 1vw, 0.75rem);
+    text-align: center;
   }
 
   .submit-button,
   .download-button {
+    max-width: 100%;
+  }
+
+  .result-box,
+  .info-box {
     max-width: 100%;
   }
 }
@@ -436,11 +751,17 @@ form {
   .input-group label,
   .result-box h3,
   .info-box h4 {
-    font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+    font-size: clamp(0.9rem, 1.3vw, 0.95rem);
+  }
+
+  .file-input,
+  .submit-button,
+  .download-button {
+    font-size: clamp(0.8rem, 1.1vw, 0.85rem);
   }
 
   .key-textarea textarea {
-    height: clamp(50px, 8vh, 60px);
+    height: clamp(60px, 10vh, 80px);
   }
 }
 
@@ -483,6 +804,7 @@ form {
   .info-box h4,
   .info-box li,
   .file-name,
+  .file-name:empty::before,
   .radio-label,
   .password-input input,
   .key-textarea textarea {
@@ -491,18 +813,21 @@ form {
   }
 
   .tabs button.active::after,
-  .file-input:hover,
+  .file-input:focus-within,
   .password-input:focus-within,
   .key-textarea:focus-within {
     border-color: #fff;
+    outline-color: #fff;
   }
 
+  .file-input,
   .submit-button,
   .download-button {
     background: #fff;
     color: #000;
   }
 
+  .file-input:hover,
   .submit-button:hover,
   .download-button:hover {
     background: #ccc;
