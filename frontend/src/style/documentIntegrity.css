@@ -1,40 +1,94 @@
-/* Document Integrity Checker Styles */
-.document-integrity-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Modern crypto-themed document integrity checker styling with full-screen fit, subtle texture, and neon animations */
+
+/* Import futuristic fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@300;400;600;700&display=swap');
+
+/* CSS Variables for consistent theming */
+:root {
+  --primary-bg: #0f172a; /* Deep space blue */
+  --text-primary: #e0e7ff; /* Light neon white */
+  --text-secondary: #94a3b8; /* Subtle slate */
+  --accent: #06b6d4; /* Cyan neon */
+  --accent-glow: #22d3ee; /* Lighter cyan for glow */
+  --secondary-accent: #8b5cf6; /* Purple neon */
+  --shadow: rgba(0, 0, 0, 0.4);
+  --glow: 0 0 12px rgba(6, 182, 212, 0.6), 0 0 24px rgba(6, 182, 212, 0.4);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --border-radius: 10px;
 }
 
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Document integrity container with subtle noise texture */
+.document-integrity-container {
+  min-height: 100vh;
+  width: 100vw;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Title section */
 .title-section {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .title-section h1 {
-  color: #2c3e50;
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: var(--glow);
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  animation: pulse 2s infinite ease-in-out;
 }
 
 .title-section p {
-  color: #7f8c8d;
-  font-size: 1.1rem;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  color: var(--text-secondary);
 }
 
+/* Neon pulse animation */
+@keyframes pulse {
+  0%, 100% { text-shadow: var(--glow); }
+  50% { text-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+}
+
+/* Upload section */
 .upload-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2rem;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: var(--border-radius);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  box-shadow: 0 4px 20px var(--shadow);
+  backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 .file-input {
@@ -47,104 +101,118 @@
 }
 
 .file-upload-label {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #3498db;
-  color: white;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  color: var(--text-primary);
+  border-radius: var(--border-radius);
   cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-weight: 600;
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .file-upload-label:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
 }
 
+/* Action buttons */
 .action-buttons {
   display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  margin-top: clamp(0.75rem, 1.5vw, 1rem);
+  width: 100%;
+  justify-content: center;
 }
 
 .action-buttons button {
-  padding: 10px 18px;
-  background-color: #2ecc71;
-  color: white;
+  padding: clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  color: var(--text-primary);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-weight: 600;
+  transition: transform var(--transition), box-shadow var(--transition);
+  min-width: 120px;
 }
 
 .action-buttons button:hover {
-  background-color: #27ae60;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
 }
 
 .action-buttons button:disabled {
-  background-color: #bdc3c7;
+  background: rgba(15, 23, 42, 0.5);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
 .action-buttons button:nth-child(2) {
-  background-color: #e74c3c;
+  background: linear-gradient(90deg, var(--secondary-accent), var(--accent));
 }
 
-.action-buttons button:nth-child(2):hover {
-  background-color: #c0392b;
-}
-
-.action-buttons button:nth-child(2):disabled {
-  background-color: #bdc3c7;
-}
-
+/* Files section */
 .files-section {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: var(--border-radius);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  box-shadow: 0 4px 20px var(--shadow);
+  backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 .files-section h2 {
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #ecf0f1;
-  padding-bottom: 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.2rem);
+  color: var(--text-primary);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  text-shadow: var(--glow);
 }
 
+/* Table container */
 .table-container {
   overflow-x: auto;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .hash-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
 }
 
 .hash-table th {
-  background-color: #f2f2f2;
-  padding: 12px 15px;
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .hash-table td {
-  padding: 10px 15px;
-  border-bottom: 1px solid #ecf0f1;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
 }
 
 .hash-cell {
-  max-width: 180px;
+  max-width: clamp(150px, 20vw, 180px);
   position: relative;
 }
 
@@ -152,61 +220,81 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  font-family: 'Courier New', monospace;
-  font-size: 0.8rem;
+  font-family: monospace;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  color: var(--text-primary);
 }
 
 .hash-value:hover {
   white-space: normal;
   word-break: break-all;
   position: absolute;
-  background-color: #f8f9fa;
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
   z-index: 10;
-  padding: 8px;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  width: 300px;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  border-radius: 6px;
+  box-shadow: var(--glow);
+  width: clamp(200px, 30vw, 300px);
+  border: 1px solid var(--accent);
 }
 
+/* Tamper button */
 .tamper-button {
-  background-color: #f39c12;
-  color: white;
+  background: linear-gradient(90deg, var(--secondary-accent), var(--accent));
+  color: var(--text-primary);
   border: none;
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-size: 0.8rem;
+  border-radius: 6px;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .tamper-button:hover {
-  background-color: #d35400;
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
 }
 
+/* Blockchain visualization */
 .blockchain-visualization {
-  margin-top: 2rem;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
 }
 
 .blockchain-visualization h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  color: var(--text-primary);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  text-shadow: var(--glow);
 }
 
 .blockchain {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  gap: 1rem;
-  padding: 1rem 0;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem) 0;
 }
 
 .block {
-  min-width: 180px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 1rem;
-  background-color: #f8f9fa;
+  min-width: clamp(150px, 20vw, 180px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  backdrop-filter: blur(10px);
   position: relative;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.block:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--glow);
 }
 
 .block:not(:first-child)::before {
@@ -215,70 +303,165 @@
   left: -15px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.5rem;
-  color: #7f8c8d;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--text-secondary);
 }
 
 .block-header {
+  font-family: 'Orbitron', sans-serif;
   font-weight: bold;
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid #e0e0e0;
-  color: #2c3e50;
+  padding-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  text-shadow: var(--glow);
 }
 
 .block-content {
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 1.1vw, 0.8rem);
+  color: var(--text-secondary);
 }
 
-.hash-display, .previous-hash {
-  margin-top: 0.5rem;
-  font-family: 'Courier New', monospace;
+.hash-display,
+.previous-hash {
+  margin-top: clamp(0.5rem, 1vw, 0.75rem);
+  font-family: monospace;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-primary);
 }
 
+/* Explanation section */
 .explanation-section {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: var(--border-radius);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  box-shadow: 0 4px 20px var(--shadow);
+  backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 .explanation-section h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  color: var(--text-primary);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  text-shadow: var(--glow);
 }
 
 .explanation-section ol {
-  padding-left: 1.5rem;
+  padding-left: clamp(1rem, 2vw, 1.25rem);
   margin-bottom: 0;
 }
 
 .explanation-section li {
-  margin-bottom: 0.5rem;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
   line-height: 1.5;
+  color: var(--text-secondary);
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
 }
 
+/* Responsive styles */
 @media (max-width: 768px) {
   .document-integrity-container {
-    padding: 1rem;
+    padding: clamp(0.5rem, 1.5vw, 0.75rem);
   }
-  
+
   .title-section h1 {
-    font-size: 1.8rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
   }
-  
-  .block {
-    min-width: 150px;
+
+  .upload-section {
+    padding: clamp(0.5rem, 1.5vw, 0.75rem);
   }
-  
+
   .action-buttons {
     flex-direction: column;
-    width: 100%;
+    align-items: stretch;
   }
-  
+
   .action-buttons button {
-    width: 100%;
+    min-width: unset;
+  }
+
+  .block {
+    min-width: clamp(120px, 18vw, 150px);
+  }
+}
+
+@media (max-width: 576px) {
+  .title-section h1 {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+  }
+
+  .files-section h2,
+  .blockchain-visualization h3,
+  .explanation-section h3 {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+  }
+
+  .hash-cell {
+    max-width: clamp(100px, 15vw, 120px);
+  }
+
+  .hash-value:hover {
+    width: clamp(150px, 25vw, 200px);
+  }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .file-upload-label,
+  .action-buttons button,
+  .tamper-button,
+  .block,
+  .title-section h1 {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Accessibility: High contrast */
+@media (prefers-contrast: high) {
+  .document-integrity-container,
+  .upload-section,
+  .files-section,
+  .block,
+  .explanation-section,
+  .hash-table th,
+  .hash-value:hover {
+    background: var(--primary-bg);
+    background-image: none; /* Remove texture for high contrast */
+    border-color: #fff;
+  }
+
+  .title-section h1,
+  .title-section p,
+  .files-section h2,
+  .blockchain-visualization h3,
+  .explanation-section h3,
+  .block-header,
+  .block-content,
+  .hash-display,
+  .previous-hash,
+  .explanation-section li,
+  .hash-table td,
+  .hash-value {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+  }
+
+  .file-upload-label,
+  .action-buttons button,
+  .tamper-button {
+    background: #fff;
+    color: #000;
+  }
+
+  .action-buttons button:nth-child(2) {
+    background: #ccc;
   }
 }

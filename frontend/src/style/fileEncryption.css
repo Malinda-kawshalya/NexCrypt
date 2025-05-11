@@ -1,419 +1,510 @@
-/* Modern responsive CSS for file encryption interface */
+/* Modern crypto-themed file encryption styling with full-screen fit, subtle texture, and neon animations */
 
-/* CSS Variables for consistency with header and footer */
+/* Import futuristic fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@300;400;600;700&display=swap');
+
+/* CSS Variables for consistent theming */
 :root {
-    --primary-bg: #1e293b;
-    --text-primary: #ffffff;
-    --text-secondary: #e2e8f0;
-    --accent: #3b82f6;
-    --accent-light: #60a5fa;
-    --shadow: rgba(0, 0, 0, 0.2);
-    --transition: 0.3s ease;
-    --container-width: 1280px;
-    --border-radius: 8px;
-    --background-light: #ffffff;
-    --input-bg: #f9fafb;
-    --border-light: #e2e8f0;
+  --primary-bg: #0f172a; /* Deep space blue */
+  --text-primary: #e0e7ff; /* Light neon white */
+  --text-secondary: #94a3b8; /* Subtle slate */
+  --accent: #06b6d4; /* Cyan neon */
+  --accent-glow: #22d3ee; /* Lighter cyan for glow */
+  --secondary-accent: #8b5cf6; /* Purple neon */
+  --shadow: rgba(0, 0, 0, 0.4);
+  --glow: 0 0 12px rgba(6, 182, 212, 0.6), 0 0 24px rgba(6, 182, 212, 0.4);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --border-radius: 10px;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* File encryption container with subtle noise texture */
+.file-encryption-container {
+  min-height: 100vh;
+  width: 100vw;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Tab styling */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  width: 100%;
+}
+
+.tabs button {
+  flex: 1;
+  min-width: 100px;
+  padding: clamp(0.5rem, 1.2vw, 0.75rem);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  border: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition), transform var(--transition), text-shadow var(--transition);
+}
+
+.tabs button:hover,
+.tabs button.active {
+  color: var(--accent);
+  transform: translateY(-2px);
+  text-shadow: var(--glow);
+}
+
+.tabs button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  box-shadow: var(--glow);
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  width: 100%;
+}
+
+/* Input group styling */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  width: 100%;
+}
+
+.input-group label {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  text-shadow: var(--glow);
+}
+
+/* File input styling */
+.file-input {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  cursor: pointer;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.file-input:hover {
+  border-color: var(--accent);
+  transform: scale(1.01);
+  box-shadow: var(--glow);
+}
+
+.file-input input[type="file"] {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.file-name {
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  color: var(--accent);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Password input styling */
+.password-input {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.password-input:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.password-input input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  outline: none;
+  color: var(--text-primary);
+}
+
+/* Key textarea styling */
+.key-textarea {
+  display: flex;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.key-textarea:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.key-textarea textarea {
+  border: none;
+  background: transparent;
+  width: 100%;
+  height: clamp(60px, 10vh, 80px);
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-family: monospace;
+  resize: vertical;
+  outline: none;
+  color: var(--text-primary);
+}
+
+/* Radio button styling */
+.radio-group {
+  display: flex;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
+  margin-top: clamp(0.25rem, 0.5vw, 0.5rem);
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  cursor: pointer;
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  color: var(--text-primary);
+}
+
+.radio-label input[type="radio"] {
+  accent-color: var(--accent);
+  transform: scale(1.2);
+}
+
+/* Submit button styling */
+.submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: clamp(0.5rem, 1.2vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  margin-top: clamp(0.5rem, 1vw, 0.75rem);
+  width: 100%;
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
+}
+
+.submit-button:disabled {
+  background: rgba(15, 23, 42, 0.5);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Spinning animation for loader */
+.spinning {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  /* Reset and base styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Main container styling */
+}
+
+/* Result box styling */
+.result-box {
+  margin-top: clamp(0.75rem, 1.5vw, 1rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px var(--shadow);
+  backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+.result-box.success {
+  border: 1px solid var(--accent);
+  background: rgba(15, 23, 42, 0.9);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.result-box.error {
+  border: 1px solid var(--secondary-accent);
+  background: rgba(15, 23, 42, 0.9);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.result-box h3 {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(0.95rem, 1.4vw, 1rem);
+  color: var(--text-primary);
+  text-shadow: var(--glow);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Neon pulse animation */
+@keyframes pulse {
+  0%, 100% { text-shadow: var(--glow); }
+  50% { text-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+}
+
+.result-box p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+}
+
+/* Download button styling */
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+  font-weight: 500;
+  transition: transform var(--transition), box-shadow var(--transition);
+  max-width: 200px;
+}
+
+.download-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
+}
+
+/* Info box styling */
+.info-box {
+  margin-top: clamp(0.75rem, 1.5vw, 1rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  background: var(--primary-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px var(--shadow);
+  width: 100%;
+}
+
+.info-box h4 {
+  margin: 0 0 clamp(0.5rem, 1vw, 0.75rem);
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(0.9rem, 1.3vw, 0.95rem);
+  color: var(--text-primary);
+  text-shadow: var(--glow);
+}
+
+.info-box ul {
+  padding-left: clamp(1rem, 2vw, 1.25rem);
+}
+
+.info-box li {
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  color: var(--text-secondary);
+  font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+}
+
+.info-box li:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .file-encryption-container {
-    max-width: 800px;
-    margin: clamp(1rem, 2vw, 1.5rem) auto;
-    padding: clamp(1rem, 2vw, 1.5rem);
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 16px var(--shadow);
-    backdrop-filter: blur(8px);
-    font-family: 'Inter', sans-serif;
+    padding: clamp(0.5rem, 1.5vw, 0.75rem);
   }
-  
-  /* Tab styling */
+
   .tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border-light);
-    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    flex-direction: column;
+    align-items: stretch;
   }
-  
+
   .tabs button {
-    padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
-    border: none;
-    background: none;
-    font-size: clamp(0.9rem, 1.2vw, 0.95rem);
-    font-weight: 600;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: color var(--transition), transform var(--transition);
-    position: relative;
-  }
-  
-  .tabs button:hover {
-    color: var(--accent);
-    transform: translateY(-2px);
-  }
-  
-  .tabs button.active {
-    color: var(--accent);
-  }
-  
-  .tabs button.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    border-radius: 3px 3px 0 0;
-  }
-  
-  /* Form styling */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(1rem, 1.5vw, 1.25rem);
-  }
-  
-  /* Input group styling */
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .input-group label {
-    font-weight: 600;
-    color: #333;
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
-  }
-  
-  /* File input styling */
-  .file-input {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    min-width: unset;
     padding: clamp(0.5rem, 1vw, 0.75rem);
-    border: 2px dashed var(--border-light);
-    border-radius: var(--border-radius);
-    background-color: var(--input-bg);
-    cursor: pointer;
-    transition: border-color var(--transition), transform var(--transition);
+    font-size: clamp(0.75rem, 1vw, 0.8rem);
   }
-  
-  .file-input:hover {
-    border-color: var(--accent);
-    transform: scale(1.01);
-  }
-  
-  .file-input input[type="file"] {
-    opacity: 0;
-    width: 0.1px;
-    height: 0.1px;
-    position: absolute;
-  }
-  
-  .file-name {
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
-    color: var(--accent);
-    font-weight: 500;
-  }
-  
-  /* Password input styling */
-  .password-input {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: clamp(0.5rem, 1vw, 0.75rem);
-    border: 1px solid var(--border-light);
-    border-radius: var(--border-radius);
-    background-color: var(--input-bg);
-    transition: border-color var(--transition), box-shadow var(--transition);
-  }
-  
-  .password-input:focus-within {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-  }
-  
-  .password-input input {
-    border: none;
-    background: none;
-    width: 100%;
-    font-size: clamp(0.9rem, 1.2vw, 0.95rem);
-    outline: none;
-  }
-  
-  /* Key textarea styling */
-  .key-textarea {
-    display: flex;
-    gap: 0.75rem;
-    padding: clamp(0.5rem, 1vw, 0.75rem);
-    border: 1px solid var(--border-light);
-    border-radius: var(--border-radius);
-    background-color: var(--input-bg);
-    transition: border-color var(--transition), box-shadow var(--transition);
-  }
-  
-  .key-textarea:focus-within {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-  }
-  
-  .key-textarea textarea {
-    border: none;
-    background: none;
-    width: 100%;
-    height: 80px;
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
-    font-family: 'Fira Code', monospace;
-    resize: vertical;
-    outline: none;
-  }
-  
-  /* Radio button styling */
+
   .radio-group {
-    display: flex;
-    gap: clamp(1rem, 1.5vw, 1.25rem);
-    margin-top: 0.25rem;
-  }
-  
-  .radio-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
-    color: #333;
-  }
-  
-  .radio-label input[type="file"] {
-    accent-color: var(--accent);
-    transform: scale(1.2);
-  }
-  
-  /* Submit button styling */
-  .submit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
-    background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    color: var(--text-primary);
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: clamp(0.9rem, 1.2vw, 0.95rem);
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform var(--transition), box-shadow var(--transition);
-    margin-top: 0.75rem;
-  }
-  
-  .submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-  }
-  
-  .submit-button:disabled {
-    background: #93c5fd;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
-  
-  /* Spinning animation for loader */
-  .spinning {
-    animation: spin 1.2s linear infinite;
-  }
-  
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  /* Result box styling */
-  .result-box {
-    margin-top: clamp(1rem, 2vw, 1.5rem);
-    padding: clamp(0.75rem, 1.5vw, 1rem);
-    border-radius: var(--border-radius);
-    display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: clamp(0.5rem, 1vw, 0.75rem);
   }
-  
-  .result-box.success {
-    background-color: rgba(167, 243, 208, 0.2);
-    border: 1px solid #10b981;
+
+  .file-input,
+  .password-input,
+  .key-textarea {
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  .result-box.error {
-    background-color: rgba(254, 242, 242, 0.2);
-    border: 1px solid #ef4444;
+
+  .file-name {
+    margin-left: 0;
+    margin-top: clamp(0.25rem, 0.5vw, 0.5rem);
   }
-  
-  .result-box h3 {
-    margin: 0;
-    color: #333;
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
-  }
-  
-  .result-box p {
-    margin: 0;
-    color: #555;
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
-  }
-  
-  /* Download button styling */
+
+  .submit-button,
   .download-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: clamp(0.4rem, 0.8vw, 0.5rem) clamp(0.75rem, 1.5vw, 1rem);
-    background: linear-gradient(90deg, var(--accent), var(--accent-light));
-    color: var(--text-primary);
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
-    font-weight: 500;
-    transition: transform var(--transition), box-shadow var(--transition);
+    max-width: 100%;
   }
-  
-  .download-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+@media (max-width: 576px) {
+  .file-encryption-container {
+    padding: clamp(0.5rem, 1vw, 0.75rem);
   }
-  
-  /* Info box styling */
-  .info-box {
-    margin-top: clamp(1rem, 2vw, 1.5rem);
-    padding: clamp(0.75rem, 1.5vw, 1rem);
-    background: rgba(248, 250, 252, 0.95);
-    border: 1px solid var(--border-light);
-    border-radius: var(--border-radius);
-    backdrop-filter: blur(8px);
-  }
-  
+
+  .input-group label,
+  .result-box h3,
   .info-box h4 {
-    margin: 0 0 0.5rem;
-    color: #333;
-    font-size: clamp(0.95rem, 1.2vw, 1rem);
+    font-size: clamp(0.85rem, 1.2vw, 0.9rem);
   }
-  
-  .info-box ul {
-    padding-left: 1rem;
+
+  .key-textarea textarea {
+    height: clamp(50px, 8vh, 60px);
   }
-  
-  .info-box li {
-    margin-bottom: 0.4rem;
-    color: #555;
-    font-size: clamp(0.85rem, 1vw, 0.9rem);
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tabs button,
+  .file-input,
+  .password-input,
+  .key-textarea,
+  .submit-button,
+  .download-button,
+  .result-box h3 {
+    transition: none;
+    animation: none;
+    transform: none;
   }
-  
-  .info-box li:last-child {
-    margin-bottom: 0;
+
+  .spinning {
+    animation: none;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .file-encryption-container {
-      padding: clamp(0.75rem, 1.5vw, 1rem);
-      margin: clamp(0.5rem, 1vw, 0.75rem);
-    }
-  
-    .tabs button {
-      padding: clamp(0.4rem, 0.8vw, 0.5rem) clamp(0.75rem, 1.5vw, 1rem);
-      font-size: clamp(0.85rem, 1vw, 0.9rem);
-    }
-  
-    .radio-group {
-      flex-direction: column;
-      gap: 0.75rem;
-    }
+}
+
+/* Accessibility: High contrast */
+@media (prefers-contrast: high) {
+  .file-encryption-container,
+  .tabs button,
+  .file-input,
+  .password-input,
+  .key-textarea,
+  .result-box,
+  .info-box {
+    background: var(--primary-bg);
+    background-image: none; /* Remove texture for high contrast */
+    border-color: #fff;
   }
-  
-  @media (max-width: 576px) {
-    .file-encryption-container {
-      border-radius: 6px;
-    }
-  
-    .tabs {
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+
+  .input-group label,
+  .result-box h3,
+  .result-box p,
+  .info-box h4,
+  .info-box li,
+  .file-name,
+  .radio-label,
+  .password-input input,
+  .key-textarea textarea {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
   }
-  
-  /* Accessibility: Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .tabs button,
-    .file-input,
-    .password-input,
-    .key-textarea,
-    .submit-button,
-    .download-button,
-    .tabs button::after,
-    .file-input:hover,
-    .password-input:focus-within,
-    .key-textarea:focus-within,
-    .submit-button:hover,
-    .download-button:hover {
-      transition: none;
-    }
-  
-    .spinning {
-      animation: none;
-    }
+
+  .tabs button.active::after,
+  .file-input:hover,
+  .password-input:focus-within,
+  .key-textarea:focus-within {
+    border-color: #fff;
   }
-  
-  /* Accessibility: High contrast */
-  @media (prefers-contrast: high) {
-    .file-encryption-container {
-      background: #fff;
-      border: 1px solid #000;
-    }
-  
-    .tabs button,
-    .input-group label,
-    .result-box h3,
-    .result-box p,
-    .info-box h4,
-    .info-box li {
-      color: #000;
-    }
-  
-    .tabs button.active::after,
-    .file-input:hover,
-    .password-input:focus-within,
-    .key-textarea:focus-within {
-      border-color: #000;
-      background: #000;
-    }
-  
-    .submit-button,
-    .download-button {
-      background: #000;
-      color: #fff;
-    }
-  
-    .submit-button:hover,
-    .download-button:hover {
-      background: #333;
-    }
-  
-    .result-box.success {
-      border-color: #000;
-      background: #fff;
-    }
-  
-    .result-box.error {
-      border-color: #000;
-      background: #fff;
-    }
+
+  .submit-button,
+  .download-button {
+    background: #fff;
+    color: #000;
   }
+
+  .submit-button:hover,
+  .download-button:hover {
+    background: #ccc;
+  }
+}
